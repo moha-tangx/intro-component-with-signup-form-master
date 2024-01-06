@@ -1,3 +1,5 @@
+import submitForm from "./submit.js";
+
 const form = document.forms[0];
 const inputs = form.querySelectorAll("input:not([type='submit'])");
 const [firstName, lastName, email, password] = inputs;
@@ -28,8 +30,8 @@ function setErr(field, message) {
 
 function removeErr(field) {
   field.classList.remove("err");
-  field.parentElement.querySelector("p").remove();
-  field.parentElement.querySelector("img").remove();
+  field.parentElement.querySelector("p")?.remove();
+  field.parentElement.querySelector("img")?.remove();
   field.parentElement.style.paddingBottom = "5%";
 }
 
@@ -75,16 +77,30 @@ function validateForm() {
   validatePassword();
 }
 
-function showSubmission() {
+async function showSubmission(response) {
   submitBtn.value = "submitted";
+  console.log();
   setTimeout(() => {
     inputs.forEach((input) => (input.value = ""));
- },200)
+  }, 200);
+  const res = await response.json();
+  if (response.ok) return alert("submission successful");
+  if (res.code == "ER_DUP_ENTRY") {
+    return alert(`the email ${email.value} has already signed in`);
+  }
+  alert("something went wrong");
 }
 
 submitBtn.addEventListener("click", validateForm);
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
+  const user = {
+    firstName: firstName.value?.trim(),
+    lastName: lastName.value?.trim(),
+    email: email.value?.trim(),
+    password: password.value?.trim(),
+  };
   e.preventDefault();
-  showSubmission();
+  const response = await submitForm(user);
+  showSubmission(response);
 });

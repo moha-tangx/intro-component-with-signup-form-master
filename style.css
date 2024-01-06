@@ -1,0 +1,212 @@
+@font-face {
+    font-family: poppins;
+    src: url(https://fonts.google.com/specimen/Poppins);
+}
+
+:root {
+    /** Colors **/
+    /** #### Primary #### **/
+    --Red: hsl(0, 100%, 74%);
+    --Green: hsl(154, 59%, 51%);
+
+    /* /####  Accent ####/ */
+    --Blue: hsl(248, 32%, 49%);
+
+    /* /### Neutral ####/  */
+    --Dark-Blue: hsl(249, 10%, 26%);
+    --Grayish-Blue: hsl(246, 25%, 77%);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    /* color-scheme: light dark; */
+    font-family: poppins, system-ui;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+main {
+    background: url(./images/bg-intro-desktop.png) var(--Red) center;
+    background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100dvh;
+}
+
+main > * {
+    align-items: center;
+    color: #fff;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 3%;
+    justify-content: center;
+    min-width: 300px;
+}
+
+.left h1,
+.left p {
+    font-size: 3.5rem;
+    max-width: 70%;
+    margin-left: 10%;
+}
+
+.left p {
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.right {
+    align-items: start;
+}
+
+.add {
+    background: var(--Blue);
+    border-radius: .5rem;
+    box-shadow: 0px 10px 2px rgba(0, 0, 0, .3);
+    color: #fff;
+    font-weight: 700;
+    min-width: 80%;
+    padding: 2% 4%;
+    text-align: center;
+}
+
+.add span {
+    font-weight: normal;
+    color: var(--Grayish-Blue);
+}
+
+form {
+    background: #fff;
+    border-radius: .5rem;
+    box-shadow: 0px 10px 2px rgba(0, 0, 0, .3);
+    min-width: 80%;
+    padding: 2rem;
+}
+
+.input-control {
+    width: 100%;
+    padding-bottom: 5%;
+    position: relative;
+}
+
+input {
+    border-radius: .5rem;
+    border: 1px solid var(--Grayish-Blue);
+    font-weight: 600;
+    outline: none;
+    padding: 4%;
+    width: 100%;
+    caret-color: var(--Blue);
+    caret-shape: block;
+}
+
+input.err {
+    border: 2px solid var(--Red);
+    color: var(--Red);
+}
+
+input:not([type="submit"]):focus {
+    border: 2px solid var(--Blue);
+}
+
+input.err:focus {
+    border: 2px solid var(--Red);
+}
+
+input::placeholder {
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+}
+
+input[type="submit"] {
+    background: var(--Green);
+    box-shadow: 0px 5px 2px rgba(0, 96, 0, 0.5);
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2rem;
+    outline: none;
+    padding: 3%;
+    text-transform: uppercase;
+    transition: 200ms linear;
+}
+
+input[type="submit"]:hover {
+    opacity: .8;
+}
+
+.input-control p.err-msg {
+    color: var(--Red);
+    text-align: right;
+    font-style: italic;
+}
+
+img.err-ico {
+    position: absolute;
+    right: 5%;
+    top: 30%;
+}
+
+form p.terms {
+    color: var(--Grayish-Blue);
+    margin-top: 5%;
+    font-size: small;
+    text-align: center;
+}
+
+p a {
+    color: var(--Red);
+}
+
+@media only screen and (max-width:500px) {
+    main {
+        background-image: url(./images/bg-intro-mobile.png);
+    }
+
+    .left {
+        margin-top: 15%;
+    }
+
+    .left > * {
+        min-width: 95%;
+        text-align: center;
+        margin-right:5%;
+    }
+
+    .left h1 {
+        font-size: 2.2rem;
+        padding: 2% 0;
+    }
+
+    .left p {
+        padding: 2% 12%;
+        letter-spacing: 1px;
+        line-height: 1.5;
+    }
+
+    .right {
+        padding: 5%;
+        margin: 10% 0;
+    }
+
+    form {
+        margin-top: 10%;
+    }
+
+    .add {
+        padding: 5% 25%;
+    }
+
+    input {
+        padding: 5%;
+    }
+
+    form p {
+        padding: 0 10%;
+    }
+}
